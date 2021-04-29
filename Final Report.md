@@ -79,6 +79,10 @@ The data format presented a challenging reconfiguration
 # Beyond the original specifications
 *Highlight clearly what things you did that went beyond the original specifications. That is, discuss what you implemented that would count toward the extra-credit portion of this project (see section below).*
 
+## User Stories
+
+## Requirements
+
 ## COVID Dashboard
 
 ## Testing
