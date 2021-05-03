@@ -34,13 +34,17 @@ How could we have been more efficient?
 *Describe your data set and its significance. Where did you obtain this data set from? Why did you choose the data set that you did? Indicate if you carried out any preprocessing/data cleaning/outlier removal, and so on to sanitize your data.*
 
 ## Vaccine Data
-https://www.kaggle.com/gpreda/covid-world-vaccination-progress
-We have fields like country, country code, date, daily vaccinations, vaccination type, total vaccinations, etc.
-You’ll notice that “total vaccinations” doesn’t necessarily align with the cumulative “daily vaccinations”
-You’ll also notice “partial vaccinations” are not given, but can be inferred via the given columns
+
+The crux of our project resides with accurate COVID-19 vaccine data. While it is difficult to believe in the veracity of data reported by countries with low transparency scores (see https://www.transparency.org/en/cpi/2020/index/nzl), we arrived at the conclusion that we could only do so much to clean up the data; the majority of reported data needs to be taken at face value. For this reason, further analysis likely warrants grouping customers by transparency score (ie: high trapnsparency, average transparency, and low transparency) and evaluating COVID-related numbers through this lens.
+
+We gathered our vaccine data from Kaggle, https://www.kaggle.com/gpreda/covid-world-vaccination-progress. The dataset is updated daily with the latest reported numbers and contains 15 fields, largely representing one of four categories: country level, vaccine level, date level, and source-related information. The country level data encompasses the country name and country code, which are of important note because these fields serve as the connective tissue between our datasets. Vaccine data includes the raw number of vaccines given on a particular day, the raw number of vaccinated people on a particular day, smoothed vaccination numbers, adjusted vaccination numbers, and vaccine types. There are two glaring omissions from these fields: partial vaccinations given and vaccination rate. Both of these metrics can be calculated after bringing in population data, but we still need to account for missing data and incorrectly calculated rolling sum columns.
+
+161 countries are represented in the data, and the date ranges (from when we downloaded the data) are from 12/13/2020, which is the earliest vaccination implementation for any country, to 3/30/2020. This gives us a best-case scenario of 3.5 months of vaccination data. The daily numbers fluctuate wildly from country to country, and the standard deviation of daily vaccinations across all the countries is 244,102. This is a strong indicator of a) the inherent reporting inconsistencies and b) the disparity in vaccination implementations between countries.
 
 ## COVID Case Data
-https://ourworldindata.org/covid-cases?country=IND~USA~GBR~CAN~DEU~FRA
+
+To supplement our vaccine data, we needed the actual COVID-19 case data as well; this is updated daily and can be downloaded from https://ourworldindata.org/covid-cases?country=IND~USA~GBR~CAN~DEU~FRA. Spanning 59 fields and 215 countries, a couple take-aways are immediately apparent: there are quite a few countries which have reported COVID 19 cases and are yet to implement a vaccine program, and the breadth of data here indicates the likelihood of non-COVID fields.
+
 We have fields like country, country code, date, daily cases, daily deaths, total cases, etc.
 We also have some boiler-plate demographic data
 You’ll notice that some countries are missing quite a bit of data in some fields
