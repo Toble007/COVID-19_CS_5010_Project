@@ -35,8 +35,7 @@ Even though each of the group members were assigned or fell into these roles, ev
 
 ## Project Workflow
 Show diagram
-Discuss weekly cadence
-Give example of sprints goals
+Our project workflow was very consistent and this is a big reason why we were able to get so much done and our project looks so complex. We broke everything up into pieces. Our first meeting was determining what we had to do to finish the project and dividing the work as evenly as possible for the rest of our project. Every meeting we used our plan from the first meeting and determined more details who would work on what so we could show what we did for that week. An example of this is the first meeting we decided on our main topic and our job was to find datasets and go think about what questions we wanted answered on those datasets. We should post what we find on slack and then we would discuss which datasets we wanted to use and which questions we wanted to answer the next week.
 
 ## Project Management
 Our project management was all over the place. We started out with a google document detailing our ideas and the datasets we were using. Eventually we moved over to exclusively a group chat in Slack where we would post our code various ideas and talk about our meetings. Right at the end of our project we set up a Github project. The way Github tracks changes would have been very useful to share code and see various changes in our code. If I was going to redo this project right now I would set up a Github project for all of our work to go on and use Slack for communication through the team. This would make us much more efficient.
