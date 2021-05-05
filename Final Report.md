@@ -34,7 +34,7 @@ A User Interface Designer makes sure the results we come to is shown in a easy t
 Even though each of the group members were assigned or fell into these roles, every scrum role was filled by every group member at some time during the project.
 
 ## Project Workflow
-Show diagram
+![Project Flow](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Project%20Flow.png)
 
 Our project workflow was very consistent and this is a big reason why we were able to get so much done and our project looks so complex. We broke everything up into pieces. Our first meeting was determining what we had to do to finish the project and dividing the work as evenly as possible for the rest of our project. Every meeting we used our plan from the first meeting and determined more details who would work on what so we could show what we did for that week. An example of this is the first meeting we decided on our main topic and our job was to find datasets and go think about what questions we wanted answered on those datasets. We should post what we find on slack and then we would discuss which datasets we wanted to use and which questions we wanted to answer the next week.
 
@@ -122,7 +122,7 @@ Starting out our group asked this question in a way that we didn't know how to a
 
 ## Hypothesis 2: COVID Testing Rates Help Set Infection Rate Expectations
 ### Model Preparation
-The COVID Cases dataset was used in this model. All zero value data points for COVID tests and COVID cases were removed. 
+The COVID Cases dataset was used in this model. All zero value data points for new COVID tests and new COVID cases were removed. 
 
 ![New Test vs New Cases](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/New%20Tests%20vs%20New%20Cases.png)
 
@@ -130,10 +130,10 @@ As shown above the data was not a linear function. So a log-log transformation w
 
 ![Transformed data](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/New%20Tests%20Transformed%20vs%20New%20Cases%20Transformed.png)
 
-This somewhat solved the problem and couldn't think of anything else to do so proceed to model fitting.
+This somewhat solved the linearity problem so proceed to model fitting.
 
 ### Model Description
-
+New COVID Tests vs New COVID Cases were fitted a linear regression model 
 
 ### Model Interpretation
 
