@@ -39,13 +39,7 @@ Discuss weekly cadence
 Give example of sprints goals
 
 ## Project Management
-Our project management was all over the place. We started out with a google document detailing our ideas and the datasets we were using.
-Discuss original set up without github
-Later incorporation of github
-Google Slides
-Google Docs
-Sharing on Slack
-How could we have been more efficient?
+Our project management was all over the place. We started out with a google document detailing our ideas and the datasets we were using. Eventually we moved over to exclusively a group chat in Slack where we would post our code various ideas and talk about our meetings. Right at the end of our project we set up a Github project. The way Github tracks changes would have been very useful to share code and see various changes in our code. If I was going to redo this project right now I would set up a Github project for all of our work to go on and use Slack for communication through the team. This would make us much more efficient.
 
 # The Data
 *Describe your data set and its significance. Where did you obtain this data set from? Why did you choose the data set that you did? Indicate if you carried out any preprocessing/data cleaning/outlier removal, and so on to sanitize your data.*
