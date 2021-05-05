@@ -16,9 +16,13 @@ Are certain vaccines more effective in curbing COVID spread? On a more general l
 
 ## Scrum Roles
 Project Manager - Matthew Sachs
+
 Software Architect - Thomas Butler
+
 Quality Assurance Manager - Karan Manwani
+
 User Interface Designer - Matthew Sachs
+
 A Project Manager makes sure every aspect of the design will fit into our primary goal. Matthew's job was to keep us on track and make sure we weren't straying from our project scope.
 A Software Architect makes sure the idea we think of is actually possible to code. Thomas's job was to make sure everything was possible to code and help those who were having trouble or come up with the code framework for the problem if they were off course.
 A Quality Assurance Manager makes sure the code is robust, there job is to make sure all potential aspects of the code will not cause errors for our intended use case. Karan ensured we had unit testing and helped us understand if a particular part of our code wasn't coded in a proper manner.
