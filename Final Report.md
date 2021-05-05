@@ -113,7 +113,7 @@ This model intents to answer the relationship between COVID Case growth and COVI
 ### Model Preparation
 The COVID Cases and COVID Vaccines datasets were used in this model. All data points that did not have Vaccine happening during that week were removed. All zero value data points for Weekly Vaccines Given and new COVID cases were removed. Any country that was vaccinating but not reporting any covid cases were removed. Any country that didn't have at least 3 weeks of vaccine data was removed. The reason why any country that didn't have at least 3 weeks of vaccine data were removed was because they were not actively vaccinating. Alot of countries had vaccines donated to them from various sources and either can't afford and/or get access to more vaccines.
 
-![Weekly Vaccines vs New Cases}(https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Weekly%20Vaccines%20Given%20vs%20New%20Cases%20data%20clean.png)
+![Weekly Vaccines vs New Cases](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Weekly%20Vaccines%20Given%20vs%20New%20Cases%20data%20clean.png)
 
 ![Zoomed in](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Weekly%20Vaccines%20Given%20vs%20New%20Cases%20data%20clean%20zoomed%20in.png)
 
