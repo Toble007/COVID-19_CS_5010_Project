@@ -110,20 +110,28 @@ The data format presented a challenging reconfiguration
 ## Hypothesis 1: COVID Vaccinations Impact Lagged COVID Cases
 ### Model Preparation
 
+
 ### Model Description
 
 ### Model Interpretation
 
 ### Testing
+
+### Improvements
+Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question.
 
 ## Hypothesis 2: COVID Testing Rates Help Set Infection Rate Expectations
 ### Model Preparation
+The COVID Cases dataset was used in this model. All zero value data points for COVID tests and COVID cases were removed. ![New Test vs New Cases](.COVID-19_CS_5010_Project/Visualizations/New Tests vs New Cases.png)
 
 ### Model Description
 
 ### Model Interpretation
 
 ### Testing
+
+### Improvements
+Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question.
 
 ## Hypothesis 3: A Country's Ability To Scale Vaccination Efforts Is Related To HDI
 ### Model Preparation
@@ -134,6 +142,8 @@ The data format presented a challenging reconfiguration
 
 ### Testing
 
+### Improvements
+
 ## Hypothesis 4: Cultural Dimensions Play A Role In COVID Infection Rates
 ### Model Preparation
 
@@ -142,6 +152,8 @@ The data format presented a challenging reconfiguration
 ### Model Interpretation
 
 ### Testing
+
+### Improvements
 
 # Conclusions
 
