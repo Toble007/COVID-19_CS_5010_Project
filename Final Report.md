@@ -123,8 +123,11 @@ Starting out our group asked this question in a way that we didn't know how to a
 ## Hypothesis 2: COVID Testing Rates Help Set Infection Rate Expectations
 ### Model Preparation
 The COVID Cases dataset was used in this model. All zero value data points for COVID tests and COVID cases were removed. ![New Test vs New Cases](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/New%20Tests%20vs%20New%20Cases.png)
+As shown above the data was not a linear function. So a log-log transformation was tried on the data. ![Transformed data](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/New%20Tests%20Transformed%20vs%20New%20Cases%20Transformed.png)
+This somewhat solved the problem and couldn't think of anything else to do so proceed to model fitting.
 
 ### Model Description
+
 
 ### Model Interpretation
 
