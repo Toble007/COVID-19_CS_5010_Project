@@ -1,5 +1,5 @@
 # Introduction
-*Describe your project scenario. Starting out, what did you hope to accomplish/learn?*
+Our group started out with a interest in COVID Data and how different factors effected this. We hoped to determine which socioeconomic factors effected COVID outcomes and general information on COVID vaccines, testing and cases worldwide and per country. We knew this was too large and would have to decrease the scope of the project but we would proceed and get as much as we could done.
 
 ## Project Scope
 Our group was interested in COVID-19 data and understanding COVID trends on an international level. As such, we had a few precursory questions that drove our data selection:
@@ -15,7 +15,11 @@ Project Manager - Matthew Sachs
 Software Architect - Thomas Butler
 Quality Assurance Manager - Karan Manwani
 User Interface Designer - Matthew Sachs
-Briefly discuss associated responsibilities
+A Project Manager makes sure every aspect of the design will fit into our primary goal. Matthew's job was to keep us on track and make sure we weren't straying from our project scope.
+A Software Architect makes sure the idea we think of is actually possible to code. Thomas's job was to make sure everything was possible to code and help those who were having trouble or come up with the code framework for the problem if they were off course.
+A Quality Assurance Manager makes sure the code is robust, there job is to make sure all potential aspects of the code will not cause errors for our intended use case. Karan ensured we had unit testing and helped us understand if a particular part of our code wasn't coded in a proper manner.
+A User Interface Designer makes sure the results we come to is shown in a easy to understand way for our client. This role makes it possible for other people to understand our work without looking through our code and allows those without the required background knowledge to understand what we did. Matthew's job was to make sure all our results were presented in a understandable way for our client.
+Even though each of the group members were assigned or fell into these roles, every scrum role was filled by every group member at some time during the project.
 
 ## Project Workflow
 Show diagram
@@ -23,6 +27,7 @@ Discuss weekly cadence
 Give example of sprints goals
 
 ## Project Management
+Our project management was all over the place. We started out with a google document detailing our ideas and the datasets we were using.
 Discuss original set up without github
 Later incorporation of github
 Google Slides
