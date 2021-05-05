@@ -5,9 +5,13 @@ Our group started out with a interest in COVID Data and how different factors ef
 Our group was interested in COVID-19 data and understanding COVID trends on an international level. As such, we had a few precursory questions that drove our data selection:
 
 The relationship between vaccination and covid case growth
+
 The relationship between testing and covid case growth
+
 What factors, if any, are leading indicators of higher COVID rates?
+
 Which countries are able to ramp up their vaccination efforts the fastest? What factors contribute to a country’s vaccine implementation?
+
 Are certain vaccines more effective in curbing COVID spread? On a more general level, does vaccination rate impact COVID infection rate? What is the respective time lag?
 
 ## Scrum Roles
