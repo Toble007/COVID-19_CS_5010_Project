@@ -107,20 +107,65 @@ The data format presented a challenging reconfiguration
 # Results
 *Display and discuss the results. Describe what you have learned and mention the relevance/significance of the results you have obtained.*
 
-## Hypothesis 1: COVID Vaccinations Impact Lagged COVID Cases
-### Model Preparation
+## Hypothesis 1: COVID Vaccinations vs. Lagged COVID Cases
+This model intents to answer the relationship between COVID Case growth and COVID vaccination worldwide.
 
+### Model Preparation
+The COVID Cases and COVID Vaccines datasets were used in this model. All data points that did not have Vaccine happening during that week were removed. All zero value data points for Weekly Vaccines Given and new COVID cases were removed. Any country that was vaccinating but not reporting any covid cases were removed. Any country that didn't have at least 3 weeks of vaccine data was removed. The reason why any country that didn't have at least 3 weeks of vaccine data were removed was because they were not actively vaccinating. Alot of countries had vaccines donated to them from various sources and either can't afford and/or get access to more vaccines.
+
+![Weekly Vaccines vs New Cases}(https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Weekly%20Vaccines%20Given%20vs%20New%20Cases%20data%20clean.png)
+
+![Zoomed in](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Weekly%20Vaccines%20Given%20vs%20New%20Cases%20data%20clean%20zoomed%20in.png)
+
+Above is the graph for the linear relationshp between COVID Vaccines and COVID Cases. The data is not a linear function so a log-log transformation was applied to the data.
+
+![Log transformed data](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Weekly%20Vaccines%20Given%20Transformed%20vs%20New%20Cases%20Transformed%20data%20clean.png)
+
+The transformed data looks more linear now so proceeded to model fitting.
 
 ### Model Description
+Weekly Vaccines vs New COVID Cases were fitted with a simple linear regression model. Output and graphs are below.
+
+![Simple model regression output](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Weekly%20Vaccines%20Transformed%20vs%20New%20Cases%20Transformed%20regression%20output.png)
+
+![Residual Plot](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Residual%20Plot%20Weekly%20Vaccines%20Transformed%20vs%20New%20Cases%20Transformed%20data%20clean.png)
+
+![QQ Plot](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/QQ%20Plot%20Weekly%20Vaccines%20Transformed%20vs%20New%20Cases%20Transformed%20data%20clean.png)
+
+![Autocorrelation Plot](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Autocorrelation%20Plot%20New%20Cases%20Transformed%20data%20clean.png)
+
+There are some issues with the model. The residual plot shows a nonconstant variance and non-zero mean. The QQ Plot has a light-tailed distribution. The Autocorrelation plot shows that an autocorrelation issue exists. The nonconstant variance and non-zero mean means that there is probably a issue with my model. When I made these models I didn't know how to fix these issues. So I tried fitting more variables to the model in hopes it would solve some of the issues.
+
+![Multi-Regression Model](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Weekly%20Vaccines%20Transformed%20vs%20New%20Cases%20Transformed%20data%20clean%20weekly%20regression%20output.png)
+
+Ran this and check for significant terms and then interactive terms. All the additional terms are already log transformed.
+
+![Interative termed model](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Weekly%20Vaccines%20Transformed%20vs%20New%20Cases%20Transformed%20data%20clean%20weekly%20interactive%20term%20regression%20output.png)
+
+![Residual Plot](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Residual%20Plot%20Weekly%20Vaccines%20Transformed%20vs%20New%20Cases%20Transformed%20data%20clean%20weekly%20interactive%20term.png)
+
+![QQ Plot](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/QQ%20Plot%20Weekly%20Vaccines%20Transformed%20vs%20New%20Cases%20Transformed%20data%20clean%20weekly%20interactive%20term.png)
+
+This is the model I ended up with. My issues from before are still there but the residual plot looks better and the autocorrelation issue might have been fixed, I just had no clue how to check. From here I didn't know how to improve the model further.
 
 ### Model Interpretation
+![Interative termed model](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Weekly%20Vaccines%20Transformed%20vs%20New%20Cases%20Transformed%20data%20clean%20weekly%20interactive%20term%20regression%20output.png)
+A 10% increase in new cases for current week leads to a 2.1% increase in Vaccines for the current week.
+
+The Week 1 coefficient is negative but it has a interactive term and the break even point which causes more vaccines is at least 303 cases on new cases. To come to this number take the absolute value of the coefficient Week_1 / the interactive term (new cases transformed:Week 1) and set that equal to ln(new cases). Solve that equation. Math is shown below.
+
+![Math](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Math%20on%20interative%20equation.png)
+
+A 10% increase in cases from 3 weeks ago leads to a 1% increase in Vaccines for the current week.
 
 ### Testing
 
 ### Improvements
-Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question.
+Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question. Originally we didn't know what a autoregressive model was and would now use that to sovle the time lag issue present in the model.
 
-## Hypothesis 2: COVID Testing Rates Help Set Infection Rate Expectations
+## Hypothesis 2: COVID Testing Rates vs COVID Cases
+This model intents to answer what the relationship between COVID Case growth and COIVD Testing is worldwide.
+
 ### Model Preparation
 The COVID Cases dataset was used in this model. All zero value data points for new COVID tests and new COVID cases were removed. 
 
@@ -133,14 +178,28 @@ As shown above the data was not a linear function. So a log-log transformation w
 This somewhat solved the linearity problem so proceed to model fitting.
 
 ### Model Description
-New COVID Tests vs New COVID Cases were fitted a linear regression model 
+New COVID Tests vs New COVID Cases were fitted with a simple linear regression model. Output and graphs are below.
+
+![Regression output](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/New%20Tests%20Transformed%20vs%20New%20Cases%20Transformed%20regression%20output.png)
+
+![Residual Plot](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Residual%20Plot%20New%20Tests%20Transformed%20vs%20New%20Cases%20Transformed.png)
+
+![QQ PLot](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/QQ%20Plot%20New%20Tests%20Transformed%20vs%20New%20Cases%20Transformed.png)
+
+![Autocorrelation Plot](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Autocorrelation%20Plot%20New%20Cases%20Transformed%20data%20clean.png)
+
+There are some issues with the model. The residual plot shows a nonconstant variance and non-zero mean. The QQ Plot has a slight downward skew. The Autocorrelation plot shows that an autocorrelation issue exists. The nonconstant variance and non-zero mean means that there is probably a issue with my model. When I made these models I didn't know how to fix these issues.
 
 ### Model Interpretation
+![Regression output](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/New%20Tests%20Transformed%20vs%20New%20Cases%20Transformed%20regression%20output.png)
+
+Overall, this model states that a 10% increase in cases leads to a 1.1^Bcase or 1.1^0.5970 = 1.0586 or 5.86% increase in testing.
 
 ### Testing
+All columns used in this model were tested to ensure there were no NA values in them and that all the values inside the columns were greater than zero.
 
 ### Improvements
-Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question.
+Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question. Originally we didn't know what a autoregressive model was and would now use that to sovle the time lag issue present in the model.
 
 ## Hypothesis 3: A Country's Ability To Scale Vaccination Efforts Is Related To HDI
 ### Model Preparation
