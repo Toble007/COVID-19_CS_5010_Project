@@ -204,7 +204,7 @@ All columns used in this model were tested to ensure there were no NA values in 
 Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question. Originally we didn't know what a autoregressive model was and would now use that to sovle the time lag issue present in the model.
 
 ## Hypothesis 3: A Country's Ability To Scale Vaccination Efforts Is Related To HDI
-The hypothesis of this model is: The more advanced a country based on the Human Development Index, the higher their abiltiy to scale vaccination efforts, which is measured by vaccination rates.
+The hypothesis of this model is: The more advanced a country based on the Human Development Index (HDI), the higher their abiltiy to scale vaccination efforts, which is measured by vaccination rates.
 
 ### Model Preparation
 The Vaccination, Worldbank, and Covid cases datasets were used for this model. Human Development Index is a calculated index using life expectancy, education, and per capita income indicators. It is compliled by the United Nations Development Programme (UNDP). Below is the scale and categories of the index
@@ -218,15 +218,35 @@ The final percentage of the population vaccinated was taken by finding the highe
 Countries without a human development index score were dropped from the analysis. This resulted in 15 countries being dropped and the analysis had a total of 100 countries.
 
 ### Model Description
-A scatter plot and fitted plot of the Human Development Index against Vaccination rates was produced to perform initial exploratory data analysis. Below are the two plots:
+A scatter plot and fitted plot of the Human Development Index against Vaccination rate was produced to perform initial exploratory data analysis. The HDI is the predictor variable and Vaccination rate is the response variable.
+Below are the two plots:
 
 ![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/ScatterPlot_HumanDevIndex_VaccinationRates.png)
+![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/FittedPlot_HDI_VaccinationRates.PNG)
+
+As can be seen from the plots, it appears that there could be a linear relationship between HDI and Vaccination rates. There are also some points which are on the top right side of the plots that apprear to be leverage points given their much higher vaccination rates versus most other countries.
+
+Below is the top 10 countries based on vaccination rates along with their corresponding HDI and GDP Per capita numbers (in current $).
+
+![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Top10_VaccinationRates.PNG)
+
+This does show that most of these countries have an HDI above 0.8. It also shows Seychelles and Israel appeart to be the leverage points, given their signficantly higher vaccination rates. 
+
+The next step was to proceed with building a simple linear regression model. 
+![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Regression_HumanDev_VaccinatioRates.PNG)
+
 ### Model Interpretation
+The results show that the HDI (predictor variable) coefficient has a value of 23.7212 and a t-statistic of 2.702. This means it is statistically signficant within a 95% confidence interval. This can be interpreted as for a unit change in the Human development index, the vaccination rate of a country increases by 23.7%.
+However, this model had a low R-Square value of 0.069, which meant that 7% of the variance of Vaccination rates is explained by HDI in this model.
 
 ### Testing
+Unit testing was done to ensure there were no negative values for HDI and Vaccination Rates. Testing was also done to ensure vaccination rates were equal to or lower than 100, given that this was a calculated number in percentage terms.
 
 ### Improvements
+Further improvements would be focused on improving the model to better explain the variance. This could be done by trying models outside of linear regression or finding the appropriate transformation.
+The data also showed a positive skewness as illustrated by the QQ plot below. So perhaps dealing with the outliers would not only correct for the skewness, but also produce a better R-squared and hence a better explanation of the variance.
 
+![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/QQPLOT_HDI_VaccinationRates.PNG)
 ## Hypothesis 4: Cultural Dimensions Play A Role In COVID Infection Rates
 ### Model Preparation
 
