@@ -204,13 +204,21 @@ All columns used in this model were tested to ensure there were no NA values in 
 Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question. Originally we didn't know what a autoregressive model was and would now use that to sovle the time lag issue present in the model.
 
 ## Hypothesis 3: A Country's Ability To Scale Vaccination Efforts Is Related To HDI
+The hypothesis of this model is: The more advanced a country based on the Human Development Index, the higher their abiltiy to scale vaccination efforts, which is measured by vaccination rates.
+
 ### Model Preparation
 The Vaccination, Worldbank, and Covid cases datasets were used for this model. Human Development Index is a calculated index using life expectancy, education, and per capita income indicators. It is compliled by the United Nations Development Programme (UNDP). Below is the scale and categories of the index
 - Score of 0.8 and above considered as very high.
 - 0.7 to 0.799 is high.
 - 0.550 to 0.699 considered medium.
 - Below 0.550 is low
+
+Vaccination rates were calculated for each country using the vaccination data and demographics data i.e. Total People Vaccinated/population.
+The final percentage of the population vaccinated was taken by finding the highest percentage of vaccination rates per country, which in theory should be the latest day of vaccinations. The dataframe was then grouped by country to produce one datapoint for each country showing their percentage of population vaccinated against their human development index.
+Countries without a human development index score were dropped from the analysis. This resulted in 15 countries being dropped and the analysis had a total of 100 countries.
+
 ### Model Description
+A scatter plot and fitted plot of the Human Development Index against Vaccination rates was produced to perform initial exploratory data analysis. Below are the two plots:
 
 ### Model Interpretation
 
