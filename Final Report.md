@@ -205,7 +205,11 @@ Starting out our group asked this question in a way that we didn't know how to a
 
 ## Hypothesis 3: A Country's Ability To Scale Vaccination Efforts Is Related To HDI
 ### Model Preparation
-
+The Vaccination, Worldbank, and Covid cases datasets were used for this model. Human Development Index is a calculated index using life expectancy, education, and per capita income indicators. It is compliled by the United Nations Development Programme (UNDP). Below is the scale and categories of the index
+- Score of 0.8 and above considered as very high.
+- 0.7 to 0.799 is high.
+- 0.550 to 0.699 considered medium.
+- Below 0.550 is low
 ### Model Description
 
 ### Model Interpretation
