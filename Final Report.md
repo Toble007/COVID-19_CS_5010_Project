@@ -220,7 +220,7 @@ Countries without a human development index score were dropped from the analysis
 ### Model Description
 A scatter plot and fitted plot of the Human Development Index against Vaccination rates was produced to perform initial exploratory data analysis. Below are the two plots:
 
-![Scatter Plot] https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Scatter%20Plot_Human%20Dev%20index%20and%20Vaccination%20Rates.png
+![](Visualizations/ ScatterPlot_HumanDevIndex_VaccinationRates.png)
 ### Model Interpretation
 
 ### Testing
