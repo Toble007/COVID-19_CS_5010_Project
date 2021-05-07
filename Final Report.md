@@ -247,6 +247,7 @@ Further improvements would be focused on improving the model to better explain t
 The data also showed a positive skewness as illustrated by the QQ plot below. So perhaps dealing with the outliers would not only correct for the skewness, but also produce a better R-squared and hence a better explanation of the variance.
 
 ![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/QQPLOT_HDI_VaccinationRates.PNG)
+
 ## Hypothesis 4: Cultural Dimensions Play A Role In COVID Infection Rates
 The hypothesis of this model is: Countries with high individualism & uncertainty avoidance had higher covid cases.
 
@@ -256,10 +257,11 @@ The Covid cases was sourced from Ourworld dataset on Covid cases. Geert Hofstede
 Two cultural dimensions were selected from Hofstede Cultural dimensions : individualism and uncertainty avoidance.
 
 Individualism index measures the ties people have to their society.
-- The scores demonstrate loosely Knit vs. tightly knit social framework within a country.
+- The scores demonstrate loosely knit vs. tightly knit social framework within a country.
 - High value indicates weak interpersonal connection to people outside their core family.
 
 Uncertainty avoidance measures the society’s tolerance for uncertainty. Countries will high scores tend to be more uncomfortable with uncertainty.
+The scores range from 1 to 100 for each dimension.
 
 The below bar plot shows an example of two countries with different Individualism and Uncertainty avoidance scores. These are also two countries which had different responses to the Covid 19 pandemic.
 
@@ -271,11 +273,26 @@ Data was grouped by country to produce one datapoint for each country showing th
 
 ### Model Description
 
+A muliple regression model was run using Individualism index and the Uncertainty avoidance index as the predictor variables with percentage of population that tested positive for covid as the response variable. Below is a residual plot for the two predictors.
+
+![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Residuals_idv.PNG)
+
+![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Residuals_uai.PNG)
+
+Visually, it apprears that the residuals are appear to be scattered randomly around zero, which is one of the assumptions of a linear regression model.
+
+Here are the results of the regression models:
+![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Regression_CulturalDimensions_CovidCases.PNG)
+
 ### Model Interpretation
+The results show that coefficients of the Individualism and Uncertainty avoidance are 0.0423 and 0.0432 respectively. Their T-values are 2.67 and 2.478, which means they are both statistically significant. This means that for a unit change in the Individualism index score that covid positive cases increase by 0.04 while holding the other predictors constant. This also about the same for the uncertainly avoidance index score.
+However, the model only explains 14% of the variance given the R-square of 0.139.
 
 ### Testing
+Unit testing was done to ensure there were no negative values for the cultural dimensions and covid positive cases. Testing was also done to ensure covid positive rates were equal to or lower than 100, given that this was a calculated number in percentage terms.
 
 ### Improvements
+Further improvements would be focused on improving the model to better explain the variance and improve the R-sqaured value. Perhaps, trying models outside of linear regression would be more helpful here.
 
 # Conclusions
 
