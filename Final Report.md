@@ -204,10 +204,10 @@ All columns used in this model were tested to ensure there were no NA values in 
 Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question. Originally we didn't know what a autoregressive model was and would now use that to sovle the time lag issue present in the model.
 
 ## Hypothesis 3: A Country's Ability To Scale Vaccination Efforts Is Related To HDI
-The hypothesis of this model is: The more advanced a country based on the Human Development Index (HDI), the higher their abiltiy to scale vaccination efforts, which is measured by vaccination rates.
+The hypothesis of this model is: The more advanced a country, based on the Human Development Index (HDI), the higher their ability to scale vaccination efforts, which is measured by vaccination rates.
 
 ### Model Preparation
-The Vaccination, Worldbank, and Covid cases datasets were used for this model. Human Development Index is a calculated index using life expectancy, education, and per capita income indicators. It is compliled by the United Nations Development Programme (UNDP). Below is the scale and categories of the index
+The Vaccination, World bank, and Covid cases datasets were used for this model. Human Development Index is a calculated index using life expectancy, education, and per capita income indicators. It is compiled by the United Nations Development Program (UNDP). Below is the scale and categories of the index:
 - Score of 0.8 and above considered as very high.
 - 0.7 to 0.799 is high.
 - 0.550 to 0.699 considered medium.
@@ -230,13 +230,13 @@ Below is the top 10 countries based on vaccination rates along with their corres
 
 ![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Top10_VaccinationRates.PNG)
 
-This does show that most of these countries have an HDI above 0.8. It also shows Seychelles and Israel appeart to be the leverage points, given their signficantly higher vaccination rates. 
+This does show that most of these countries have an HDI above 0.8. It also shows Seychelles and Israel appear to be the leverage points, given their significantly higher vaccination rates. 
 
 The next step was to proceed with building a simple linear regression model. 
 ![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Regression_HumanDev_VaccinatioRates.PNG)
 
 ### Model Interpretation
-The results show that the HDI (predictor variable) coefficient has a value of 23.7212 and a t-statistic of 2.702. This means it is statistically signficant within a 95% confidence interval. This can be interpreted as for a unit change in the Human development index, the vaccination rate of a country increases by 23.7%.
+The results show that the HDI (predictor variable) coefficient has a value of 23.7212 and a t-statistic of 2.702. This means it is statistically significant within a 95% confidence interval. This can be interpreted as for a unit change in the Human development index, the vaccination rate of a country increases by 23.7%.
 However, this model had a low R-Square value of 0.069, which meant that 7% of the variance of Vaccination rates is explained by HDI in this model.
 
 ### Testing
@@ -268,18 +268,18 @@ The below bar plot shows an example of two countries with different Individualis
 ![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/USA_vs_Singapore_idv%26uai.PNG)
 
 Covid positive rates  were calculated for each country using the covid cases data and demographics data i.e. Total population tested positive for Covid/population. The final percentage of covid positive cases was taken by finding the highest percentage of covid rates per country, which in theory should be the latest day of cases.
-Data was grouped by country to produce one datapoint for each country showing their percentage of covid cases  against their individualism and uncertainty avoidance measures.Countries without cultural dimension scores were dropped from the analysis. This resulted in a  total of 67 countries for the analysis.
+Data was grouped by country to produce one datapoint for each country showing their percentage of covid cases  against their individualism and uncertainty avoidance measures. Countries without cultural dimension scores were dropped from the analysis. This resulted in a total of 67 countries for the analysis.
 
 
 ### Model Description
 
-A muliple regression model was run using Individualism index and the Uncertainty avoidance index as the predictor variables with percentage of population that tested positive for covid as the response variable. Below is a residual plot for the two predictors.
+A multiple regression model was run using Individualism index and the Uncertainty avoidance index as the predictor variables with percentage of population that tested positive for covid as the response variable. Below is a residual plot for the two predictors.
 
 ![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Residuals_idv.PNG)
 
 ![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Residuals_uai.PNG)
 
-Visually, it apprears that the residuals are appear to be scattered randomly around zero, which is one of the assumptions of a linear regression model.
+Visually, it appears that the residuals are appear to be scattered randomly around zero, which is one of the assumptions of a linear regression model.
 
 Here are the results of the regression models:
 ![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Regression_CulturalDimensions_CovidCases.PNG)
@@ -292,7 +292,7 @@ However, the model only explains 14% of the variance given the R-square of 0.139
 Unit testing was done to ensure there were no negative values for the cultural dimensions and covid positive cases. Testing was also done to ensure covid positive rates were equal to or lower than 100, given that this was a calculated number in percentage terms.
 
 ### Improvements
-Further improvements would be focused on improving the model to better explain the variance and improve the R-sqaured value. Perhaps, trying models outside of linear regression would be more helpful here.
+Further improvements would be focused on improving the model to better explain the variance and improve the R-squared value. Perhaps, trying models outside of linear regression would be more helpful here.
 
 # Conclusions
 
