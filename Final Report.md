@@ -295,7 +295,24 @@ Unit testing was done to ensure there were no negative values for the cultural d
 Further improvements would be focused on improving the model to better explain the variance and improve the R-squared value. Perhaps, trying models outside of linear regression would be more helpful here.
 
 # Conclusions
+In conclusion, after pulling multiple datasets and performing data cleaning and merging, we were able to run a few regression tests on hypothesis we were interested in exploring. We also performed unit testing on our code using Glass-box/white-box testing methods.
 
 ## Key Takeaways
+Some of the conclusions we arrived at included:
+- For a 10% increase in Covid cases, testing efforts increased by 5.9%.
+- A 10% increase in new Covid cases from the current week led to a 2.1% increase in Vaccines.
+- There is a positive relationship between a country’s level of development and vaccination rates.
+- There is a positive relationship between individualism, uncertainty avoidance and the number of covid cases.
+In addition, we also produced a dashboard with visualizations to show the trend by week in vaccination rates and covid cases by multiple factors such as income group and region.
 
 ## Opportunities For Further Investigation
+
+There were also some areas we were interested in investigating further to produce better and more robust models. Some of the topics for further investigation include:
+
+Data Pipeline: automate the downloading of our dynamic data
+Data Timeline: explore alternative time windows (3 days, 10 days, etc)
+Data Selection: could use PCA or factor analysis to assess additional economic variables
+Ancillary Data: including public policy as categorical data (i.e.: 1 for lockdown imposed, 0 for no lockdown)
+Data Clean-Up: outlier detection would help with modeling
+Data Modeling: time-series (ARIMA) or maybe even Naive Bayesian Regression
+Data Visualization: annotated graphs
