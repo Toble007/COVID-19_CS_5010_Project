@@ -248,7 +248,26 @@ The data also showed a positive skewness as illustrated by the QQ plot below. So
 
 ![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/QQPLOT_HDI_VaccinationRates.PNG)
 ## Hypothesis 4: Cultural Dimensions Play A Role In COVID Infection Rates
+The hypothesis of this model is: Countries with high individualism & uncertainty avoidance had higher covid cases.
+
 ### Model Preparation
+The Covid cases was sourced from Ourworld dataset on Covid cases. Geert Hofstede cultural dimensions data set was our other data source for this model.
+
+Two cultural dimensions were selected from Hofstede Cultural dimensions : individualism and uncertainty avoidance.
+
+Individualism index measures the ties people have to their society.
+- The scores demonstrate loosely Knit vs. tightly knit social framework within a country.
+- High value indicates weak interpersonal connection to people outside their core family.
+
+Uncertainty avoidance measures the society’s tolerance for uncertainty. Countries will high scores tend to be more uncomfortable with uncertainty.
+
+The below bar plot shows an example of two countries with different Individualism and Uncertainty avoidance scores. These are also two countries which had different responses to the Covid 19 pandemic.
+
+![](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/USA_vs_Singapore_idv%26uai.PNG)
+
+Covid positive rates  were calculated for each country using the covid cases data and demographics data i.e. Total population tested positive for Covid/population. The final percentage of covid positive cases was taken by finding the highest percentage of covid rates per country, which in theory should be the latest day of cases.
+Data was grouped by country to produce one datapoint for each country showing their percentage of covid cases  against their individualism and uncertainty avoidance measures.Countries without cultural dimension scores were dropped from the analysis. This resulted in a  total of 67 countries for the analysis.
+
 
 ### Model Description
 
