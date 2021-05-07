@@ -309,10 +309,10 @@ In addition, we also produced a dashboard with visualizations to show the trend 
 
 There were also some areas we were interested in investigating further to produce better and more robust models. Some of the topics for further investigation include:
 
-Data Pipeline: automate the downloading of our dynamic data
-Data Timeline: explore alternative time windows (3 days, 10 days, etc)
-Data Selection: could use PCA or factor analysis to assess additional economic variables
-Ancillary Data: including public policy as categorical data (i.e.: 1 for lockdown imposed, 0 for no lockdown)
-Data Clean-Up: outlier detection would help with modeling
-Data Modeling: time-series (ARIMA) or maybe even Naive Bayesian Regression
-Data Visualization: annotated graphs
+- Data Pipeline: automate the downloading of our dynamic data
+- Data Timeline: explore alternative time windows (3 days, 10 days, etc)
+- Data Selection: could use PCA or factor analysis to assess additional economic variables
+- Ancillary Data: including public policy as categorical data (i.e.: 1 for lockdown imposed, 0 for no lockdown)
+- Data Clean-Up: outlier detection would help with modeling
+- Data Modeling: time-series (ARIMA) or maybe even Naive Bayesian Regression
+- Data Visualization: annotated graphs
