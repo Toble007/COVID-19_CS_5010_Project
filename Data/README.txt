@@ -1,1 +1,1 @@
-This is where we will put our datasets used.
+We have put all our datasets into our code folder.
