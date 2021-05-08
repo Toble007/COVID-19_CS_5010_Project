@@ -77,10 +77,11 @@ Indulgence "stands for a society that allows relatively free gratification of ba
 We downloaded this data from https://geerthofstede.com/research-and-vsm/dimension-data-matrix/. There are some noteworthy characteristics of the data: 
 1) The sociological nature of the analysis means this data was collected over many years. Culture is not static, and immigration patterns and globalism can significantly alter these cultural scores over time. Unfortunately, we are only given one data point per country and we must come to terms with the fact that are current scores aren't very accurate, and that we lose the dynanism aspect inherent to culture.
 2) There are countries where Hofstede has not scored all of the dimensions, so there are gaps with missing data. Non-country entities, like regions and intra-country cultural divides, are also included.
+Countries and country codes are included as well, which in theory will allow us to merge this to our other datasets.
 
 ## Economic Indicator Data
 https://data.worldbank.org/topic/economy-and-growth
-There are quite a few economic indicators (245) included here, complemented with country and country code designations
+To understand a country's access to medical supplies, existing infrastructure for vaccine distribution, and (generally speaking) financial heft, we recognized that economic indicators would be an effective proxy. We went to the worldbank, https://data.worldbank.org/topic/economy-and-growth, and found a comprehensive dataset. There are quite a few economic indicators (245) included here, complemented with country and country code designations. The sheer breadth of economic indicators was quite intimidating, and we didn't yet have exposure to shrinkage techniques, factor analysis, or particla components analysis. 
 The data is an odd wide-long mesh; note that the indicators are consolidated to a single column, whereas the years each have their very own
 The data format presented a challenging reconfiguration
 
