@@ -56,15 +56,11 @@ We gathered our vaccine data from Kaggle, https://www.kaggle.com/gpreda/covid-wo
 
 To supplement our vaccine data, we needed the actual COVID-19 case data as well; this is updated daily and can be downloaded from https://ourworldindata.org/covid-cases?country=IND~USA~GBR~CAN~DEU~FRA. Spanning 59 fields and 215 countries, a couple take-aways are immediately apparent: there are quite a few countries which have reported COVID 19 cases and are yet to implement a vaccine program, and the breadth of data here indicates the likelihood of non-COVID fields. Sure enough, there are a number of potential infection predictors, including but not limited to: population size, median age, and average life expectancy. Predictors that are directly related to COVID's spread and potency, like cardiovascular deaths, handwashing facilities, and prevalence of diabetes, complement our COVID-specific metrics like daily cases reported, daily deaths reported, and daily tests conducted. Unfortunantely, a number of fields, like patients in ICU, number of smokers, etc, have a paucity of countries represented and, as a result, can only be effectively modeled for a subset of countries.
 
-The data has observations from as early as 1/1/2020, which is nearly a full year's worth of data more than our vaccine data. Assuming the dataset's reported numbers are roughly as accurate as our vaccine numbers, we would assume that the increased number of observations would help us to train our models more effectively
-
-We have fields like country, country code, date, daily cases, daily deaths, total cases, etc.
-We also have some boiler-plate demographic data
-You’ll notice that some countries are missing quite a bit of data in some fields
+The data has observations from as early as 1/1/2020, which is nearly a full year's worth of data more than our vaccine data. Assuming the dataset's reported numbers are roughly as accurate as our vaccine numbers, we would also assume that the increased number of observations would help us to train our models more effectively. As far as the reporting inconsistencies we saw in the vaccine dataset, the COVID case data has less missing data in the COVID-related numbers and the daily observation should prove more reliable.
 
 ## Cultural Dimension Data
 https://geerthofstede.com/research-and-vsm/dimension-data-matrix/
-Geert Hofstede is a social scientist who rates countries on 0-100 scale on 6 dimensions: power distance, individualism, masculinity, uncertainty avoidance, long-term orientation, and indulgence
+Geert Hofstede is a social scientist who rates countries on 0-100 scale on 6 dimensions: power distance, individualism, masculinity, uncertainty avoidance, long-term orientation, and indulgence. Each of these dimensions warrants explanation for 
 There are some regional entries here, and a lot of missing data
 The country codes here do not necessarily align with the country codes in our other datasets
 
@@ -78,16 +74,16 @@ The data format presented a challenging reconfiguration
 *Describe briefly your process, starting from where you obtained your data all the way to means of obtaining results/output.* 
 
 ## Vaccine Clean-Up
-
+For our vaccine data, we needed to eliminate non-countries, backfill missing data and replace with 0’s, recalculate our running total columns based on daily inputs, and choose a timeline that maximized our observations per country while minimizing reporting inconsistencies. For this, we established a 7 day resampling window.
 
 ## COVID Case Clean-Up
-
+For our case data, we identified sparse data fields and dropped them, consolidated our data using the resampling frequency used in our vaccine data, adjusted the vaccine timeline so when we merge data on date, a vaccine week wouldn’t start in the middle of a case week, and filled missing data with 0s.
 
 ## Cultural Dimension Clean-Up
-
+The cultural dimension data required us to identify which country names and codes didn’t align with our other data, and we renamed appropriately. We also imputed missing data with the corresponding region’s median data point and eliminated countries with missing data after imputation.
 
 ## Economic Indicator Clean-Up
-
+The economic indicator dataset required reformatting the dataframe itself. We melted the year columns into a single field and established a new field for the respective indicator value. We then identified which indicators covered the most countries, and, of these indicators, which had the most recent data. We further reduced our indicators by gathering further insight into what they actually measured and hypothesizing which offered the most predictive value for our purposes. With the data now cleaned and ready, we could begin modelling and Thomas will take us through that.
 
 ## Merging Datasets
 
