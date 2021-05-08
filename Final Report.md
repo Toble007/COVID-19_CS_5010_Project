@@ -122,7 +122,31 @@ The transformed data looks more linear now so proceeded to model fitting.
 ### Model Description
 Weekly Vaccines vs New COVID Cases were fitted with a simple linear regression model. Output and graphs are below.
 
-![Simple model regression output](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Weekly%20Vaccines%20Transformed%20vs%20New%20Cases%20Transformed%20regression%20output.png)
+                                    OLS Regression Results                                   
+=============================================================================================
+Dep. Variable:     Weekly_Vaccines_Given_transformed   R-squared:                       0.308
+Model:                                           OLS   Adj. R-squared:                  0.307
+Method:                                Least Squares   F-statistic:                     345.3
+Date:                               Sat, 08 May 2021   Prob (F-statistic):           4.92e-64
+Time:                                       17:44:21   Log-Likelihood:                -1579.9
+No. Observations:                                778   AIC:                             3164.
+Df Residuals:                                    776   BIC:                             3173.
+Df Model:                                          1                                         
+Covariance Type:                           nonrobust                                         
+=========================================================================================
+                            coef    std err          t      P>|t|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+const                     5.9545      0.292     20.404      0.000       5.382       6.527
+new_cases_transformed     0.5799      0.031     18.581      0.000       0.519       0.641
+==============================================================================
+Omnibus:                       77.660   Durbin-Watson:                   0.660
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              360.955
+Skew:                          -0.315   Prob(JB):                     4.17e-79
+Kurtosis:                       6.277   Cond. No.                         41.7
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
 ![Residual Plot](https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Visualizations/Residual%20Plot%20Weekly%20Vaccines%20Transformed%20vs%20New%20Cases%20Transformed%20data%20clean.png)
 
