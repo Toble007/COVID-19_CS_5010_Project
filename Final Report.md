@@ -80,10 +80,12 @@ We downloaded this data from https://geerthofstede.com/research-and-vsm/dimensio
 Countries and country codes are included as well, which in theory will allow us to merge this to our other datasets.
 
 ## Economic Indicator Data
-https://data.worldbank.org/topic/economy-and-growth
-To understand a country's access to medical supplies, existing infrastructure for vaccine distribution, and (generally speaking) financial heft, we recognized that economic indicators would be an effective proxy. We went to the worldbank, https://data.worldbank.org/topic/economy-and-growth, and found a comprehensive dataset. There are quite a few economic indicators (245) included here, complemented with country and country code designations. The sheer breadth of economic indicators was quite intimidating, and we didn't yet have exposure to shrinkage techniques, factor analysis, or particla components analysis. 
-The data is an odd wide-long mesh; note that the indicators are consolidated to a single column, whereas the years each have their very own
-The data format presented a challenging reconfiguration
+
+To understand a country's access to medical supplies, existing infrastructure for vaccine distribution, and (generally speaking) financial heft, we recognized that economic indicators would be an effective proxy. We went to the World Bank, https://data.worldbank.org/topic/economy-and-growth, and found a comprehensive dataset. There are quite a few economic indicators (245) included here, complemented with country and country code designations (264 represented in total). The sheer breadth of economic indicators was quite intimidating, especially since we didn't yet have exposure to shrinkage techniques, factor analysis, or partial components analysis. 
+
+The indicators have observations in the year range of 1960-2020, but countries were poorly represented across some metrics, and there were gaps as to which years had reported values. The metric frequency was a deciding factor when delineating highly similar metrics (for example, we have GDP in US dollars, GDP per capita, GDP adjusted for purchasing power parity).
+
+The data itself was in an odd wide-long mesh, meaning it did not follow a typical wide or long format. Every represented year had its own column, but all indicators were lumped into one column. Each metric value was included in the year column. This format required significant reshaping if we wanted to include it on our analysis.
 
 # Experimental Design
 *Describe briefly your process, starting from where you obtained your data all the way to means of obtaining results/output.* 
