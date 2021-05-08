@@ -782,7 +782,7 @@ class df_testcase(unittest.TestCase):
         #test Week 1-9 to make sure calculation is correct, checking 1 country.
         lis = df["Weekly_Vaccines_Given_transformed"][20:29].values.tolist()
         count = 0
-        for num in range(9,0,-1):
+        for num in range(10,0,-1):
             count += 1
             if count == 1:
                 self.assertTrue(lis[0:num], df["Week_1"][4+count:12].values.tolist())
