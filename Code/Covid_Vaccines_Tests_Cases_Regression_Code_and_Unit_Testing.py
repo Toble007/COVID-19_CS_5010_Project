@@ -345,6 +345,41 @@ plt.savefig('Autocorrelation Plot New Cases.png')
 plt.show()
 plt.close('all')
 
+#remove any country that doesn't have covid cases but are vaccinating anyways.
+df["not 0 cases"] = True
+count = 0
+for num in range(len(df)):
+    if num == len(df)-1:
+        if df["total_cases"][num] == 0:
+            for x in range(count+1):
+                df.loc[num-x-1,'not 0 cases'] = False
+    elif df['location'][num+1] == df['location'][num]:
+        count += 1
+    else:
+        if df["total_cases"][num] == 0:
+            for x in range(count+1):
+                df.loc[num-x,'not 0 cases'] = False
+        count = 0
+
+df = df[df["not 0 cases"]]
+df = df.reset_index(drop=True)
+
+#print(len(df))
+#1042
+
+#remove all datapoints that have either 0 new cases and/or 0 Weekly Vaccines Given
+df["not 0 new cases or Weekly Vaccines Given"] = True
+for num in range(len(df)):
+    if df["new_cases"][num] <= 0:
+        df.loc[num,'not 0 new cases or Weekly Vaccines Given'] = False
+    elif df["Weekly Vaccines Given"][num] <= 0:
+        df.loc[num,'not 0 new cases or Weekly Vaccines Given'] = False
+df = df[df["not 0 new cases or Weekly Vaccines Given"]]
+df = df.reset_index(drop=True)
+
+#print(len(df))
+#849
+
 #checking which countries have at least 3 weeks of vaccine data
 df['At least 3 weeks of vaccine data'] = False
 for num in range(len(df)):
@@ -369,42 +404,7 @@ df = df.reset_index(drop=True)
 df = df.rename(columns={"Weekly Vaccines Given": "Weekly_Vaccines_Given"})
 
 #print(len(df))
-#560
-
-#remove any country that doesn't have covid cases but are vaccinating anyways.
-df["not 0 cases"] = True
-count = 0
-for num in range(len(df)):
-    if num == len(df)-1:
-        if df["total_cases"][num] == 0:
-            for x in range(count+1):
-                df.loc[num-x-1,'not 0 cases'] = False
-    elif df['location'][num+1] == df['location'][num]:
-        count += 1
-    else:
-        if df["total_cases"][num] == 0:
-            for x in range(count+1):
-                df.loc[num-x,'not 0 cases'] = False
-        count = 0
-
-df = df[df["not 0 cases"]]
-df = df.reset_index(drop=True)
-
-#print(len(df))
-#514
-
-#remove all datapoints that have either 0 new cases and/or 0 Weekly Vaccines Given
-df["not 0 new cases or Weekly Vaccines Given"] = True
-for num in range(len(df)):
-    if df["new_cases"][num] <= 0:
-        df.loc[num,'not 0 new cases or Weekly Vaccines Given'] = False
-    elif df["Weekly_Vaccines_Given"][num] <= 0:
-        df.loc[num,'not 0 new cases or Weekly Vaccines Given'] = False
-df = df[df["not 0 new cases or Weekly Vaccines Given"]]
-df = df.reset_index(drop=True)
-
-#print(len(df))
-#460
+#778
 
 #regraph to see if anything else should be changed.
 sns.regplot(y="Weekly_Vaccines_Given",x="new_cases", data= df)
@@ -605,39 +605,41 @@ anovaResults = anova_lm(reduced, result)
 '''
 #We can see that according to the ANOVA output at least 1 of the weekly terms are significant.
 
-test = df[['new_cases_transformed','Weekly_Vaccines_Given_transformed',"Week_1","Week_3"]]
+test = df[['new_cases_transformed','Weekly_Vaccines_Given_transformed',"Week_1","Week_3","Week_6"]]
 x = test[test.columns[~test.columns.isin(["Weekly_Vaccines_Given_transformed"])]]
 x = sm.add_constant(x)
 y = test['Weekly_Vaccines_Given_transformed']
 reduced = sm.OLS(y,x).fit()
 #print(reduced.summary())
+
 '''
                                     OLS Regression Results                                   
 =============================================================================================
-Dep. Variable:     Weekly_Vaccines_Given_transformed   R-squared:                       0.463
-Model:                                           OLS   Adj. R-squared:                  0.460
-Method:                                Least Squares   F-statistic:                     131.2
-Date:                               Mon, 19 Apr 2021   Prob (F-statistic):           2.73e-61
-Time:                                       18:48:11   Log-Likelihood:                -883.62
-No. Observations:                                460   AIC:                             1775.
-Df Residuals:                                    456   BIC:                             1792.
-Df Model:                                          3                                         
+Dep. Variable:     Weekly_Vaccines_Given_transformed   R-squared:                       0.466
+Model:                                           OLS   Adj. R-squared:                  0.463
+Method:                                Least Squares   F-statistic:                     168.6
+Date:                               Sat, 08 May 2021   Prob (F-statistic):          9.72e-104
+Time:                                       17:44:25   Log-Likelihood:                -1479.2
+No. Observations:                                778   AIC:                             2968.
+Df Residuals:                                    773   BIC:                             2992.
+Df Model:                                          4                                         
 Covariance Type:                           nonrobust                                         
 =========================================================================================
                             coef    std err          t      P>|t|      [0.025      0.975]
 -----------------------------------------------------------------------------------------
-const                     5.3129      0.364     14.613      0.000       4.598       6.027
-new_cases_transformed     0.4298      0.044      9.866      0.000       0.344       0.515
-Week_1                    0.1430      0.027      5.235      0.000       0.089       0.197
-Week_3                    0.1057      0.019      5.684      0.000       0.069       0.142
+const                     6.2495      0.258     24.233      0.000       5.743       6.756
+new_cases_transformed     0.3326      0.034      9.867      0.000       0.266       0.399
+Week_1                    0.1411      0.024      5.923      0.000       0.094       0.188
+Week_3                    0.0884      0.018      4.928      0.000       0.053       0.124
+Week_6                    0.0696      0.015      4.645      0.000       0.040       0.099
 ==============================================================================
-Omnibus:                       61.554   Durbin-Watson:                   0.581
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):              550.045
-Skew:                          -0.032   Prob(JB):                    3.62e-120
-Kurtosis:                       8.357   Cond. No.                         68.5
+Omnibus:                       82.798   Durbin-Watson:                   0.528
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              564.271
+Skew:                           0.135   Prob(JB):                    2.95e-123
+Kurtosis:                       7.163   Cond. No.                         67.7
 ==============================================================================
 
-Notes:
+Warnings:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 '''
 
@@ -645,98 +647,99 @@ anovaResults = anova_lm(reduced, result)
 #print(anovaResults)
 '''
    df_resid          ssr  df_diff    ss_diff         F    Pr(>F)
-0     456.0  1255.371347      0.0        NaN       NaN       NaN
-1     449.0  1224.594770      7.0  30.776577  1.612042  0.129856
+0     773.0  2041.214830      0.0        NaN       NaN       NaN
+1     767.0  2008.598419      6.0  32.616412  2.075808  0.053873
 '''
 #keep reduced model.
 
-test = df[['new_cases_transformed','Weekly_Vaccines_Given_transformed',"Week_1","Week_3"]]
-result = smf.ols(formula="Weekly_Vaccines_Given_transformed~new_cases_transformed*Week_1+new_cases_transformed*Week_3",data=test).fit()
+test = df[['new_cases_transformed','Weekly_Vaccines_Given_transformed',"Week_1","Week_3","Week_6"]]
+result = smf.ols(formula="Weekly_Vaccines_Given_transformed~new_cases_transformed*Week_1+new_cases_transformed*Week_3+new_cases_transformed*Week_6",data=test).fit()
 #print(result.summary())
 '''
                                     OLS Regression Results                                   
 =============================================================================================
-Dep. Variable:     Weekly_Vaccines_Given_transformed   R-squared:                       0.479
-Model:                                           OLS   Adj. R-squared:                  0.473
-Method:                                Least Squares   F-statistic:                     83.41
-Date:                               Mon, 19 Apr 2021   Prob (F-statistic):           4.98e-62
-Time:                                       18:50:31   Log-Likelihood:                -876.91
-No. Observations:                                460   AIC:                             1766.
-Df Residuals:                                    454   BIC:                             1791.
+Dep. Variable:     Weekly_Vaccines_Given_transformed   R-squared:                       0.485
+Model:                                           OLS   Adj. R-squared:                  0.480
+Method:                                Least Squares   F-statistic:                     103.4
+Date:                               Sat, 08 May 2021   Prob (F-statistic):          2.18e-106
+Time:                                       17:44:25   Log-Likelihood:                -1465.3
+No. Observations:                                778   AIC:                             2947.
+Df Residuals:                                    770   BIC:                             2984.
+Df Model:                                          7                                         
+Covariance Type:                           nonrobust                                         
+================================================================================================
+                                   coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------------------------
+Intercept                        8.2690      0.468     17.686      0.000       7.351       9.187
+new_cases_transformed            0.1162      0.054      2.168      0.030       0.011       0.221
+Week_1                          -0.2065      0.095     -2.184      0.029      -0.392      -0.021
+new_cases_transformed:Week_1     0.0355      0.009      3.795      0.000       0.017       0.054
+Week_3                           0.1279      0.094      1.365      0.173      -0.056       0.312
+new_cases_transformed:Week_3    -0.0040      0.009     -0.429      0.668      -0.022       0.014
+Week_6                           0.0012      0.085      0.014      0.989      -0.165       0.168
+new_cases_transformed:Week_6     0.0068      0.008      0.810      0.418      -0.010       0.023
+==============================================================================
+Omnibus:                       90.869   Durbin-Watson:                   0.579
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              650.971
+Skew:                           0.211   Prob(JB):                    4.40e-142
+Kurtosis:                       7.461   Cond. No.                     1.05e+03
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.05e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+'''
+anovaResults = anova_lm(reduced, result)
+#print(anovaResults)
+'''
+   df_resid          ssr  df_diff    ss_diff         F    Pr(>F)
+0     773.0  2041.214830      0.0        NaN       NaN       NaN
+1     770.0  1969.697671      3.0  71.517159  9.319233  0.000005
+'''
+#At least 1 of the weekly interactive terms are significant.
+
+test = df[['new_cases_transformed','Weekly_Vaccines_Given_transformed',"Week_1","Week_3","Week_6"]]
+reduced = smf.ols(formula="Weekly_Vaccines_Given_transformed~new_cases_transformed*Week_1+Week_3+Week_6",data=test).fit()
+#print(reduced.summary())
+'''
+                                    OLS Regression Results                                   
+=============================================================================================
+Dep. Variable:     Weekly_Vaccines_Given_transformed   R-squared:                       0.484
+Model:                                           OLS   Adj. R-squared:                  0.481
+Method:                                Least Squares   F-statistic:                     144.9
+Date:                               Sat, 08 May 2021   Prob (F-statistic):          2.08e-108
+Time:                                       17:44:25   Log-Likelihood:                -1465.6
+No. Observations:                                778   AIC:                             2943.
+Df Residuals:                                    772   BIC:                             2971.
 Df Model:                                          5                                         
 Covariance Type:                           nonrobust                                         
 ================================================================================================
                                    coef    std err          t      P>|t|      [0.025      0.975]
 ------------------------------------------------------------------------------------------------
-Intercept                        7.3603      0.664     11.077      0.000       6.054       8.666
-new_cases_transformed            0.2185      0.072      3.035      0.003       0.077       0.360
-Week_1                          -0.1894      0.119     -1.589      0.113      -0.424       0.045
-new_cases_transformed:Week_1     0.0329      0.012      2.860      0.004       0.010       0.056
-Week_3                           0.1105      0.104      1.063      0.288      -0.094       0.315
-new_cases_transformed:Week_3    -0.0004      0.010     -0.043      0.966      -0.020       0.019
+Intercept                        8.2904      0.465     17.812      0.000       7.377       9.204
+new_cases_transformed            0.1139      0.053      2.133      0.033       0.009       0.219
+Week_1                          -0.2062      0.070     -2.928      0.004      -0.344      -0.068
+new_cases_transformed:Week_1     0.0355      0.007      5.229      0.000       0.022       0.049
+Week_3                           0.0884      0.018      5.014      0.000       0.054       0.123
+Week_6                           0.0688      0.015      4.667      0.000       0.040       0.098
 ==============================================================================
-Omnibus:                       62.433   Durbin-Watson:                   0.607
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):              572.285
-Skew:                           0.023   Prob(JB):                    5.37e-125
-Kurtosis:                       8.464   Cond. No.                     1.03e+03
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The condition number is large, 1.03e+03. This might indicate that there are
-strong multicollinearity or other numerical problems.
-
-----------------------------------------------------------------------
-'''
-anovaResults = anova_lm(reduced, result)
-#print(anovaResults)
-'''
-   df_resid          ssr  df_diff    ss_diff         F   Pr(>F)
-0     456.0  1255.371347      0.0        NaN       NaN      NaN
-1     454.0  1219.237064      2.0  36.134283  6.727553  0.00132
-'''
-#At least 1 of the weekly interactive terms are significant.
-
-test = df[['new_cases_transformed','Weekly_Vaccines_Given_transformed',"Week_1","Week_3"]]
-reduced = smf.ols(formula="Weekly_Vaccines_Given_transformed~new_cases_transformed*Week_1+Week_3",data=test).fit()
-#print(reduced.summary())
-'''
-                                    OLS Regression Results                                   
-=============================================================================================
-Dep. Variable:     Weekly_Vaccines_Given_transformed   R-squared:                       0.479
-Model:                                           OLS   Adj. R-squared:                  0.474
-Method:                                Least Squares   F-statistic:                     104.5
-Date:                               Mon, 19 Apr 2021   Prob (F-statistic):           4.57e-63
-Time:                                       18:55:50   Log-Likelihood:                -876.91
-No. Observations:                                460   AIC:                             1764.
-Df Residuals:                                    455   BIC:                             1784.
-Df Model:                                          4                                         
-Covariance Type:                           nonrobust                                         
-================================================================================================
-                                   coef    std err          t      P>|t|      [0.025      0.975]
-------------------------------------------------------------------------------------------------
-Intercept                        7.3587      0.663     11.105      0.000       6.056       8.661
-new_cases_transformed            0.2186      0.072      3.046      0.002       0.078       0.360
-Week_1                          -0.1862      0.094     -1.989      0.047      -0.370      -0.002
-new_cases_transformed:Week_1     0.0326      0.009      3.672      0.000       0.015       0.050
-Week_3                           0.1061      0.018      5.783      0.000       0.070       0.142
-==============================================================================
-Omnibus:                       62.473   Durbin-Watson:                   0.607
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):              573.339
-Skew:                           0.022   Prob(JB):                    3.17e-125
-Kurtosis:                       8.469   Cond. No.                         822.
+Omnibus:                       90.372   Durbin-Watson:                   0.576
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              641.355
+Skew:                           0.211   Prob(JB):                    5.39e-140
+Kurtosis:                       7.428   Cond. No.                         749.
 ==============================================================================
 
-Notes:
+Warnings:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 '''
 
 anovaResults = anova_lm(reduced, result)
 #print(anovaResults)
 '''
-   df_resid          ssr  df_diff   ss_diff         F    Pr(>F)
-0     455.0  1219.242022      0.0       NaN       NaN       NaN
-1     454.0  1219.237064      1.0  0.004957  0.001846  0.965749
+   df_resid          ssr  df_diff   ss_diff       F    Pr(>F)
+0     772.0  1971.383935      0.0       NaN     NaN       NaN
+1     770.0  1969.697671      2.0  1.686264  0.3296  0.719313
 '''
 # keep reduced model
 
@@ -777,9 +780,9 @@ class df_testcase(unittest.TestCase):
         
     def test_Week_1_to_9_calculating_correctly(self):
         #test Week 1-9 to make sure calculation is correct, checking 1 country.
-        lis = df["Weekly_Vaccines_Given_transformed"][4:12].values.tolist()
+        lis = df["Weekly_Vaccines_Given_transformed"][20:29].values.tolist()
         count = 0
-        for num in range(7,0,-1):
+        for num in range(9,0,-1):
             count += 1
             if count == 1:
                 self.assertTrue(lis[0:num], df["Week_1"][4+count:12].values.tolist())
