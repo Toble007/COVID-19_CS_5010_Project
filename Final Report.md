@@ -341,8 +341,8 @@ In conclusion, after pulling multiple datasets and performing data cleaning and 
 
 ## Key Takeaways
 Some of the conclusions we arrived at included:
-- For a 10% increase in Covid cases, testing efforts increased by 5.9%.
-- A 10% increase in new Covid cases from the current week led to a 2.1% increase in Vaccines.
+- For a 10% increase in Covid cases, testing efforts increased by 6.1%.
+- A 10% increase in new Covid cases from the current week led to a 1.1% increase in Vaccines.
 - There is a positive relationship between a country’s level of development and vaccination rates.
 - There is a positive relationship between individualism, uncertainty avoidance and the number of covid cases.
 In addition, we also produced a dashboard with visualizations to show the trend by week in vaccination rates and covid cases by multiple factors such as income group and region.
