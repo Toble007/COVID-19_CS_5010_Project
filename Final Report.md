@@ -126,9 +126,11 @@ With the countries renamed in our cultural dimension dataset, it was fairly stra
 
 Our testing at this stage was fairly limited in scope, considering the extensive clean-up we performed, but was supplemented by testing in the modeling stage--this feedback helped implement changes as needed. The unit testing here is as follows:
 
-1) Are there duplicate case weeks for a given country?
-2) Are there no null values in columns that should have been back-filled?
-3) Do the number of countries represented match our expectations?
+1) Are there duplicate case weeks for a given country? We did not use an actual unit test for this, but used the following in console. It should return 0 for our final dataset: new_cases_df.duplicated(subset=['location','Case Week'])
+2) Are there no null values in columns that should have been back-filled? We created a function to test this as needed:
+def na_counter(df, col):
+    return df[df[col].isna()].count()
+4) Do the number of countries represented match our expectations? We used unit testing for this.
 
 After multiple rounds of testing, the datasets we produced were able to meet our expectations.
 
