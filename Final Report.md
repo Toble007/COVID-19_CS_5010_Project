@@ -116,9 +116,11 @@ In order to keep as many countries as possible, we decided to deal with our miss
 
 ## Economic Indicator Clean-Up
 
-The economic indicator dataset required reformatting the dataframe itself. We melted the year columns into a single field and established a new field for the respective indicator value. We then identified which indicators covered the most countries, and, of these indicators, which had the most recent data. We further reduced our indicators by gathering further insight into what they actually measured and hypothesizing which offered the most predictive value for our purposes. With the data now cleaned and ready, we could begin modelling and Thomas will take us through that.
+The melt() function was pivotal in reorganizing this dataset--our dataframe was now in long format and we could proceed to inspect indicator coverage by country as well as an indicator's relative recency. The aggregated dataframe contained the following: 1) a given indicator, 2) the number of countries with some value for given indicator, 3) the average year for the indicator's most recent data by country, and 4) the most out to date observation for a given indicator. We were effectively able to eliminate indicators with poor country coverage and outdated data, and we were then able to qualitatively identify proxies for a country's access to medical supplies, existing infrastructure for vaccine distribution, and financial heft. We eventually settled on GDP per capita, foreign direct investment, education expenses, manufacturing as a percentage of GDP, and services as a percentage of GDP.
 
 ## Merging Datasets
+
+With the countries renamed in our cultural dimension dataset, it was fairly straightforward to merge our economic indicators to cultural dimensions by country; the fact that there was only one observation per country made this much easier. We were then able to merge this to our COVID data, which joined vaccine and COVID case data by country and case week. From a modeling standpoint, this means the stagnant nature of our socioeconomic and cultural standpoint is useless for time series (it doesn't change); these predictors can only be helpful in attempting to predict infection, mortality, or vaccination rate for a given country at a given week in time (relative to that country's own timeframe).
 
 ## Testing
 
@@ -127,7 +129,16 @@ The economic indicator dataset required reformatting the dataframe itself. We me
 
 ## User Stories
 
+Prior to any "product development", we identified user stories that would guide our choices and understanding of the task at hand. We came up with four user stories:
+
+1) As a “concerned citizen”, I want to understand how my country’s COVID-19 efforts compare to other countries’ so that I can see how different policy decisions affect COVID spread.
+2)	As a “government official”, I want to see how country COVID metrics differ by vaccine type, because this might impact the vaccine manufacturer I pursue business with.
+3)	As a “concerned citizen”, I want to know when there are spikes in COVID cases, because if I can understand when there might be dangerous exposure to the virus, I can opt to self-quarantine.
+4)	As a “vaccine manufacturer”, I want to know which countries have low vaccination rates because there might be an opportunity for me to step in and increase market share.
+
 ## Requirements
+
+The requirements for our end product can be divided between functional and non-functional.
 
 ## COVID Dashboard
 
