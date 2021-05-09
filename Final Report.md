@@ -124,6 +124,14 @@ With the countries renamed in our cultural dimension dataset, it was fairly stra
 
 ## Testing
 
+Our testing at this stage was fairly limited in scope, considering the extensive clean-up we performed, but was supplemented by testing in the modeling stage--this feedback helped implement changes as needed. The unit testing here is as follows:
+
+1) Are there duplicate case weeks for a given country?
+2) Are there no null values in columns that should have been back-filled?
+3) Do the number of countries represented match our expectations?
+
+After multiple rounds of testing, the datasets we produced were able to meet our expectations.
+
 # Beyond the original specifications
 *Highlight clearly what things you did that went beyond the original specifications. That is, discuss what you implemented that would count toward the extra-credit portion of this project (see section below).*
 
