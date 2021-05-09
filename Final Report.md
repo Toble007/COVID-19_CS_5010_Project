@@ -245,7 +245,7 @@ A 10% increase in cases from 6 weeks ago leads to a 0.66% increase in Vaccines f
 All columns used in this model were tested to ensure there were no NA values in them and that all the values inside the columns were greater than zero. All countries were tested to ensure they held at least 3 weeks of vaccine data. Created columns for Week 1 to Week 9 were tested to insure they held the correct values.
 
 ### Improvements
-Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question. Originally we didn't know what a autoregressive model was and would now use that to sovle the time lag issue present in the model.
+Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question. Originally we didn't know what a autoregressive model or partial autocorrelation function (PACF) was and would now use those to sovle the time lag issue present in the model.
 
 ## Hypothesis 2: COVID Testing Rates vs COVID Cases
 This model intents to answer what the relationship between COVID Case growth and COIVD Testing is worldwide. Code for model and data load in can be found https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Code/Covid_Vaccines_Tests_Cases_Regression_Code_and_Unit_Testing.py in the 'data load in and test v cases regression' cell and testing is found inside the 'testing' cell. My code can also be found https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Code/Covid_Vaccines_Tests_Cases_Regression_Code_and_Unit_Testing.ipynb and https://colab.research.google.com/drive/1ttoS23I1DXiHdf6duijXgw9F0PaFwHmv?usp=sharing
@@ -283,7 +283,7 @@ Overall, this model states that a 10% increase in cases leads to a 1.1^Bcase or 
 All columns used in this model were tested to ensure there were no NA values in them and that all the values inside the columns were greater than zero.
 
 ### Improvements
-Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question. Originally we didn't know what a autoregressive model was and would now use that to sovle the time lag issue present in the model.
+Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question. Originally we didn't know what a autoregressive model or partial autocorrelation function (PACF) was and would now use those to sovle the time lag issue present in the model.
 
 ## Hypothesis 3: A Country's Ability To Scale Vaccination Efforts Is Related To HDI
 The hypothesis of this model is: The more advanced a country, based on the Human Development Index (HDI), the higher their ability to scale vaccination efforts, as measured by vaccination rates.
@@ -381,8 +381,8 @@ In conclusion, after pulling multiple datasets and performing data cleaning and 
 
 ## Key Takeaways
 Some of the conclusions we arrived at included:
-- For a 10% increase in Covid cases, testing efforts increased by 5.9%.
-- A 10% increase in new Covid cases from the current week led to a 2.1% increase in Vaccines.
+- For a 10% increase in Covid cases, testing efforts increased by 6.1%.
+- A 10% increase in new Covid cases from the current week led to a 1.1% increase in Vaccines.
 - There is a positive relationship between a country’s level of development and vaccination rates.
 - There is a positive relationship between individualism, uncertainty avoidance and the number of covid cases.
 In addition, we also produced a dashboard with visualizations to show the trend by week in vaccination rates and covid cases by multiple factors such as income group and region.
