@@ -140,6 +140,17 @@ Prior to any "product development", we identified user stories that would guide 
 
 The requirements for our end product can be divided between functional and non-functional.
 
+Functional Requirements
+-Data is cleaned and loaded into the dashboard.
+-Data is taken and run-on various models which output different graphs.
+-The dashboard takes 1-2 seconds to load.
+
+Non-functional requirements
+-This project is written in Python.
+-The dashboard creates graphs of various metrics some of which include, various covid metrics, countries, income.
+-The graphs should be laid out in an easy-to-read manner.
+
+
 ## COVID Dashboard
 
 ## Testing
