@@ -130,7 +130,7 @@ Our testing at this stage was fairly limited in scope, considering the extensive
 2) Are there no null values in columns that should have been back-filled? We created a function to test this as needed:
 def na_counter(df, col):
     return df[df[col].isna()].count()
-4) Do the number of countries represented match our expectations? We used unit testing for this.
+4) Do the number of countries represented match our expectations? We used unit testing for this, with the expectation of failure. We then had to assess which countries dropped and why.
 
 After multiple rounds of testing, the datasets we produced were able to meet our expectations.
 
