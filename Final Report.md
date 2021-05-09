@@ -39,7 +39,7 @@ Even though each of the group members were assigned or fell into these roles, ev
 Our project workflow was very consistent. We broke everything up into pieces. Our first meeting was determining what we had to do to finish the project and dividing the work as evenly as possible for the rest of our project. Every meeting we used our plan from the first meeting and determined more details who would work on what so we could show what we did for that week. An example of this is the first meeting we decided on our main topic and our job was to find datasets and go think about what questions we wanted answered on those datasets. We should post what we find on slack and then we would discuss which datasets we wanted to use and which questions we wanted to answer the next week.
 
 ## Project Management
-Our project management was all over the place. We started out with a google document detailing our ideas and the datasets we were using. Eventually we moved over to a group chat in Slack where we would post our code various ideas and talk about our meetings. Right at the end of our project we set up a Github project. The way Github tracks changes would have been very useful to share code and see various changes in our code. If I was going to redo this project right now I would set up a Github project for all of our work to go on and use Slack for communication through the team. This would make us much more efficient.
+Our project management was all over the place. We started out with a google document detailing our ideas and the datasets we were using. Eventually we moved over to exclusively a group chat in Slack where we would post our code various ideas and talk about our meetings. Right at the end of our project we set up a Github project. The way Github tracks changes would have been very useful to share code and see various changes in our code. If I was going to redo this project right now I would set up a Github project for all of our work to go on and use Slack for communication through the team. This would make us much more efficient.
 
 # The Data
 *Describe your data set and its significance. Where did you obtain this data set from? Why did you choose the data set that you did? Indicate if you carried out any preprocessing/data cleaning/outlier removal, and so on to sanitize your data.*
@@ -138,22 +138,41 @@ Prior to any "product development", we identified user stories that would guide 
 
 ## Requirements
 
-The requirements for our end product can be divided between functional and non-functional.
+The requirements for our end product can be divided between functional and non-functional. We used these to design our product 
 
-Functional Requirements
-1) Data is cleaned and loaded into the dashboard.
-2) Data is taken and run-on various models which output different graphs.
-3) The dashboard takes 1-2 seconds to load.
+Functional requirements:
+1) Provide the dynamic capability to make 4 queries against our dataset.
+2) Provide overview of COVID metrics by country.
+3) Provide ability to explore COVID efforts over time.
+4) Provide method to group countries and compare COVID metrics to similar countries.
+5) Provide capability to visualize relationships between different predictors and COVID metrics.
+6) Provide access to users who do not have Python.
 
-Non-functional requirements
-1) This project is written in Python.
-2) The dashboard creates graphs of various metrics some of which include, various covid metrics, countries, income.
-3) The graphs should be laid out in an easy-to-read manner.
-
+Non-functional requirements:
+1) House functional requirements in an interactive dashboard.
+2) Host dashboard on a URL so multiple users can engage and access from any device.
+3) Make sure the data can be drilled into and has clear, understandable hover labels.
+4) Verify that chart controls and charts are grouped together.
 
 ## COVID Dashboard
 
+To meet our product requirements, we built a COVID-19 dashboard using the "dash" and "plotly" modules. The dasboard pulls from our cleaned COVID datasets, performs some data restructuring as needed, accommodates layout preferences via HTML and CSS, and then provides user interaction via functions in the dash module. In order to have the dashboard hosted on a URL, we needed to push our code and source files to Heroku, which provides a free server to host our dashboard. The entire scope of this endeavor goes beyond the initial project requirements and, we believe, should be considered extra credit.
+
+The dashboard can be visited here https://covid-dashboard-msachs.herokuapp.com/. Per our functional requirements, we have distinct "queries" to explore:
+
+1) The first chart grants the user the option to choose between two map views--"cases" and "vaccines". The first view produces a heat map by infection rate, where countries with higher infection rates appearing more red and countries with lower infection rates appearing more blue. The second view produces a heat map vaccination rate (either full or partial), with a similar color scale. The user can quickly see abnormalities; for example, Mexico's positivity rate is incredibly high, but the overall infection rate is extremely low. Interpreting this in the context of other countries, it seems that tests are only administered to those with the most severe symptoms and there is a strong chance that the reported number of COVID cases in Mexico is lower than the true number.
+2) The second chart allows the user to explore time series data for a specific country. Four metrics are presented over time: new tests, new cases, new deaths, and new vaccines. It should be noted that the time series window here is daily, as opposed to an aggregated 7 day total, so the user can see for themselves any reporting inconsistencies. Looking at the United States, you can see a slow decline in daily reported COVID cases once the vaccine program started to ramp up.
+3) The third chart is a little more complex. The user first selects a COVID-specific metric they wish to explore, then selects a categorical variable to explore the data by (continent, region, income group, or vaccine type). The user then has the capability to explore the different levels for the categorical variable and see how various countries meeting the chose criteria perform as it relates to COVID.
+4) The last chart is a simple correlation heat map.The user can hover over specific colors and readily see which variables have high correlations with specific COVID metrics.
+
 ## Testing
+
+The testing performed here was not via unit testing, but rather an iterative exploration of different user actions within the dashboard. Below is a list of some of the tests performed, along with the corrective action where appropriate:
+
+1) Did the dashboard work on multiple devices? It works on laptop and mobile, though the mobile experience is admittedly less than ideal. No corrective action was taken at this time, but we should explore a more robust formatting for mobile.
+2) Is the formatting consistent and are the chart controls appropriately paired with their respective charts? Our product failed this test multiple times, and we had to become much more familiar with CSS in order to get the formatting correct. Pairing the chart controls and charts was corrected once we understood the ordering of the HTML containers within the dash framework.
+3) Do the map views toggle easily between each other? Our product failed this test, as there is considerable lag when switching from the "cases" to "vaccines" view. Even when the re-rendering has completed, there are issues with the hovering abilities and there seems to be a lag between user action and hover text. We believe this has to with how we handled our if-else statement for this chart; ideally, our statement will prevent the graph from re-rendering, it just re-plots the new data. Further investigation is needed.
+4) 
 
 # Results
 *Display and discuss the results. Describe what you have learned and mention the relevance/significance of the results you have obtained.*
@@ -216,7 +235,7 @@ A 10% increase in cases from 6 weeks ago leads to a 0.66% increase in Vaccines f
 All columns used in this model were tested to ensure there were no NA values in them and that all the values inside the columns were greater than zero. All countries were tested to ensure they held at least 3 weeks of vaccine data. Created columns for Week 1 to Week 9 were tested to insure they held the correct values.
 
 ### Improvements
-Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question. Originally we didn't know what a autoregressive model or partial autocorrelation function (PACF) was and would now use those to sovle the time lag issue present in the model.
+Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question. Originally we didn't know what a autoregressive model was and would now use that to sovle the time lag issue present in the model.
 
 ## Hypothesis 2: COVID Testing Rates vs COVID Cases
 This model intents to answer what the relationship between COVID Case growth and COIVD Testing is worldwide. Code for model and data load in can be found https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Code/Covid_Vaccines_Tests_Cases_Regression_Code_and_Unit_Testing.py in the 'data load in and test v cases regression' cell and testing is found inside the 'testing' cell. My code can also be found https://github.com/Toble007/COVID-19_CS_5010_Project/blob/main/Code/Covid_Vaccines_Tests_Cases_Regression_Code_and_Unit_Testing.ipynb and https://colab.research.google.com/drive/1ttoS23I1DXiHdf6duijXgw9F0PaFwHmv?usp=sharing
@@ -254,7 +273,7 @@ Overall, this model states that a 10% increase in cases leads to a 1.1^Bcase or 
 All columns used in this model were tested to ensure there were no NA values in them and that all the values inside the columns were greater than zero.
 
 ### Improvements
-Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question. Originally we didn't know what a autoregressive model or partial autocorrelation function (PACF) was and would now use those to sovle the time lag issue present in the model.
+Starting out our group asked this question in a way that we didn't know how to answer. The question was reworded a few times but we never got a perfect answer. If we had more time we would have figured out how to create an ARIMA (auto regressive integrated moving average) model to answer this question. Originally we didn't know what a autoregressive model was and would now use that to sovle the time lag issue present in the model.
 
 ## Hypothesis 3: A Country's Ability To Scale Vaccination Efforts Is Related To HDI
 The hypothesis of this model is: The more advanced a country, based on the Human Development Index (HDI), the higher their ability to scale vaccination efforts, as measured by vaccination rates.
@@ -352,8 +371,8 @@ In conclusion, after pulling multiple datasets and performing data cleaning and 
 
 ## Key Takeaways
 Some of the conclusions we arrived at included:
-- For a 10% increase in Covid cases, testing efforts increased by 6.1%.
-- A 10% increase in new Covid cases from the current week led to a 1.1% increase in Vaccines.
+- For a 10% increase in Covid cases, testing efforts increased by 5.9%.
+- A 10% increase in new Covid cases from the current week led to a 2.1% increase in Vaccines.
 - There is a positive relationship between a country’s level of development and vaccination rates.
 - There is a positive relationship between individualism, uncertainty avoidance and the number of covid cases.
 In addition, we also produced a dashboard with visualizations to show the trend by week in vaccination rates and covid cases by multiple factors such as income group and region.
